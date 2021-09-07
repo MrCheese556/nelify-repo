@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Adventure Game (HTML & JQuery)</title>
+        <style>
+        	#key{
+            color: yellow;
+            }
+            #weapon{
+            color: red;
+            }
+            #potion{
+            color: purple;
+            }
+            #map{
+            color: brown;
+            }
+            p{
+                
+                font-family: Papyrus;
+            }
+            li{
+                font-family: Papyrus;
+            }
+            body{ 
+                color: white;
+             background: linear-gradient(to bottom,rgb(23, 16, 16), rgb(54, 34, 34), rgb(66, 63, 62));
+            }
+            button {
+                color: white;
+                border: 2px solid v;
+                background-color:rgb(71, 61, 36);
+            }
+            button:hover{
+                color:black;
+                background-color: blanchedalmond;
+            }
+        </style>
+    </head>
+    <body>
+        <p>
+            Hello adventurer, you have fallen into a dark dungeon. You must defeat the monster and escape using the door. There are things to help you on the way, such as:</p>
+            <ul>
+                <li> <span id = "key" >Keys</span>, which spawn once you have defeated the monster, and open the dungeon door</li>
+                <li> <span id = "weapon" >Weapons</span>, which help you to defeat the monster</li>
+                <li>  <span id = "potion">Potions</span>, which can revive you if you get hit</li>
+                <li> A <span id = "map">Map</span>, shown below (The x is the place you start and the face is the monster)</li>
+                
+                ____________________ <br>
+                |          |         | <br>
+                |                    | <br>
+                |___   ____|___   ___|__________ <br>
+                |          |         |          |__ <br>
+                |               X        ☹    __ <br>
+                |___   ____|___   ___|_________ | <br>
+                |          |         | <br>
+                |                    | <br>
+                |__________|_________|<br>
+                Press the start button to start the game. <br>
+                <button id = "start-button"></button>
+                <br>
+                *****************************************************************
+ 
+            </ul> 
+
+
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        
+        <script>
+        // copy and paste monster battle
+        var hasPotion = false;
+        var hasBow = false;
+        var hasKey = false;
+        var monsterDefeated = false;
+        var deathMessage = function() {
+   $("<p>").text("     *****************************************************************").appendTo("body")
+              $("<p>").text("You have died. Click the reload button to play again. Hint: Potions can revive you once, if you die.").appendTo("body");
+        }
+        // Now entering rooms
+        var doorRoom = function() {
+  $("<p>").text("You are in the room that previously was the monster room.").appendTo("body");
+     $("<button>").text("Open door").appendTo("body").on("click", function() {
+         if (hasKey === true) {
+  $("<p>").text("You unlock the door using the key, and escape! When you look around, you find yourself in the middle of an even bigger  dungeon. End of game").appendTo("body");
+        $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+         } else {
+  $("<p>").text("You turn the doorknob, but the door is locked! A key has just spawned somewhere back in the dungeon. Find it to escape.").appendTo("body");
+       $("<button>").text("Go back").appendTo("body").on("click", middleRoom)
+         $("<p>").text("     *****************************************************************").appendTo("body")
+         }
+     })
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var monsterBattle = function() {
+            if (monsterDefeated === true){
+                doorRoom();
+            } else{
+  $("<p>").text("You enter and come face to face with a monster. The battle:").appendTo("body");
+    $("<p>").text("You: 100 HP    Enemy: 200 HP").appendTo("body");
+    $("<br>").appendTo("body")
+if(hasPotion === true && hasBow === true) {
+  $("<p>").text("You shoot the monster using 1 arrow.     You: 100 HP   Enemy: 100 HP   Inventory: Bow, 1 Arrow, Potion.").appendTo("body");
+$("<br>").appendTo("body")
+  $("<p>").text("The monster attacks using it's claws.     You: 0 HP   Enemy: 100 HP.      Inventory: Bow, 1 Arrow, Potion.").appendTo("body");
+    $("<br>").appendTo("body")
+  $("<p>").text("You heal yourself using your potion.     You: 100 HP   Enemy: 100 HP.     Inventory: Bow, 1 Arrow.").appendTo("body");
+  $("<br>").appendTo("body")
+    $("<p>").text("You shoot the monster using 1 arrow.     You: 100 HP   Enemy: 0 HP.      Monster dies.     Inventory: Bow").appendTo("body");
+    monsterDefeated = true;
+       $("<p>").text("     *****************************************************************").appendTo("body")
+doorRoom();
+}
+    else if (hasPotion === false && hasBow === true) {
+  $("<p>").text("You shoot the monster using 1 arrow.     You: 100 HP   Enemy: 100 HP   Inventory: Bow, 1 Arrow.").appendTo("body");
+  $("<br>").appendTo("body")
+  $("<p>").text("The monster attacks using it's claws.     You: 0 HP   Enemy: 100 HP.      Inventory: Bow, 1 Arrow.    .").appendTo("body");
+ deathMessage();
+        }
+         else if (hasPotion === true && hasBow === false) {
+              $("<p>").text("The monster attacks using it's claws.     You: 0 HP   Enemy: 200 HP.      Inventory: Potion.").appendTo("body");
+                $("<br>").appendTo("body")
+  $("<p>").text("You heal yourself using your potion.     You: 100 HP   Enemy: 200 HP.     Inventory: ").appendTo("body");
+                  $("<br>").appendTo("body")
+    $("<p>").text("The monster attacks using it's claws.     You: 0 HP   Enemy: 200 HP.      Inventory:      ").appendTo("body");
+deathMessage();
+        }
+            else if(hasPotion === false && hasBow === false) {
+                  $("<p>").text("The monster attacks using it's claws.     You: 0 HP   Enemy: 100 HP.      Inventory:     ").appendTo("body");
+deathMessage();
+            }
+   $("<p>").text("     *****************************************************************").appendTo("body")
+            }
+        }
+        var monsterPrompt = function() {
+  $("<p>").text("You are entering the monster battle. Do you wish to continue?").appendTo("body");
+ $("<button>").text("Yes").appendTo("body").on("click", monsterBattle)
+ $("<span>").text("      ").appendTo("body");
+ $("<button>").text("No").appendTo("body").on("click", middleRoom)
+   $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var bottomLeftRoom = function() {
+  $("<p>").text("You are in the bottom left room of the dungeon.").appendTo("body");
+  if (monsterDefeated === true) {
+    $("<p>").text("You see a key behind a stone block. ").appendTo("body");
+  }
+    $("<p>").text("Do you go up or right?").appendTo("body");
+    if (monsterDefeated === true) {
+    $("<button>").text("Pick item").appendTo("body").on("click", function() {
+        hasKey = true;
+        $("<p>").text("Key added to inventory").appendTo("body");
+            $("<p>").text("     *****************************************************************").appendTo("body")
+      })
+  }
+  $("<br>").appendTo("body")
+    $("<br>").appendTo("body")
+  $("<span>").text("      ").appendTo("body");
+$("<button>").text("Up").appendTo("body").on("click", leftRoom);
+$("<br>").appendTo("body")
+  $("<br>").appendTo("body")
+    $("<span>").text("              ").appendTo("body");
+      $("<button>").text("Right").appendTo("body").on("click", bottomRoom);
+      $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var bottomRoom = function() {
+  $("<p>").text("You are in the bottom right room of the dungeon. Do you go up, or left?").appendTo("body")
+  if(hasBow === false){ $("<p>").text("You also see a bow and two arrows hanging on the wall. Would you like to pick up the bow and arrows?").appendTo("body");
+        $("<button>").text("Pick Item").appendTo("body").on("click", function() {
+          hasBow = true;
+          $("<p>").text("Bow and arrows added to inventory").appendTo("body");
+            $("<p>").text("     *****************************************************************").appendTo("body")
+      })
+  }
+        $("<br>").appendTo("body");
+        $("<br>").appendTo("body");
+  $("<span>").text("      ").appendTo("body");
+$("<button>").text("Up").appendTo("body").on("click", middleRoom);
+ $("<br>").appendTo("body")
+  $("<br>").appendTo("body")
+  $("<button>").text("Left").appendTo("body").on("click", bottomLeftRoom);
+    $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var topLeftRoom = function() {
+              $("<p>").text("You are in the top left room of the dungeon. Do you go down, or right?").appendTo("body") 
+              if(hasPotion === false){$("<p>").text("You look around and also see a potion. Would you like to pick up the potion?").appendTo("body");
+  $("<br>").appendTo("body")
+      $("<button>").text("Pick Item").appendTo("body").on("click", function() {
+          hasPotion = true;
+          $("<p>").text("Potion added to inventory").appendTo("body");
+            $("<p>").text("     *****************************************************************").appendTo("body")
+      })}
+  $("<br>").appendTo("body")
+  $("<br>").appendTo("body")
+    $("<span>").text("              ").appendTo("body");
+    $("<button>").text("Right").appendTo("body").on("click", topRoom);
+      $("<br>").appendTo("body");  
+  $("<br>").appendTo("body");
+  $("<span>").text("     ").appendTo("body");
+  $("<button>").text("Down").on("click", leftRoom).appendTo("body");
+   $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var leftRoom = function() {
+            $("<p>").text("You are in the middle left room of the dungeon. Do you go up, down or right?").appendTo("body");
+            $("<span>").text("      ").appendTo("body");
+            $("<button>").text("Up").on("click", topLeftRoom).appendTo("body");
+              $("<br>").appendTo("body");
+  $("<br>").appendTo("body");
+  $("<span>").text("              ").appendTo("body");
+  $("<button>").text("Right").appendTo("body").on("click", middleRoom);
+   $("<br>").appendTo("body");  
+  $("<br>").appendTo("body");
+   $("<span>").text("     ").appendTo("body");
+    $("<button>").text("Down").on("click", bottomLeftRoom).appendTo("body");
+  $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var middleRoom = function() {
+  $("<p>").text("You are in the middle room of the dungeon. Do you go up, down, left, or right?").appendTo("body");
+$("<span>").text("      ").appendTo("body");
+$("<button>").text("Up").attr("id", "upFromMiddle").appendTo("body").on("click", topRoom);
+  $("<br>").appendTo("body")
+  $("<br>").appendTo("body")
+  $("<button>").text("Left").appendTo("body").on("click", leftRoom);
+  $("<span>").text("       ").appendTo("body");
+  $("<button>").text("Right").attr("id", "#rightFromMiddle").appendTo("body").on("click", function() {
+     if(monsterDefeated === false) {
+         monsterPrompt()
+     } else {
+         doorRoom()
+     }
+      });
+  $("<br>").appendTo("body");  
+  $("<br>").appendTo("body");
+  $("<span>").text("     ").appendTo("body");
+  $("<button>").addClass("downFromMiddle").text("Down").appendTo("body").on("click", bottomRoom);
+  $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var topRoom = function() {
+            $("<p>").text("You are in the top right room of the dungeon. Do you go down or left?").appendTo("body");
+            $("<br>").appendTo("body");
+            $("<button>").text("Left").on("click", topLeftRoom).appendTo("body"); $("<span>").text("      ").appendTo("body");
+            $("<span>").text("      ").appendTo("body");
+            $("<br>").appendTo("body"); $("<br>").appendTo("body"); $("<span>").text("     ").appendTo("body");
+            $("<button>").text("Down").on("click", middleRoom).appendTo("body")
+              $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        //now entering extra copy pastes
+        
+        var doorRoom = function() {
+  $("<p>").text("You are in the room that previously was the monster room.").appendTo("body");
+     $("<button>").text("Open door").appendTo("body").on("click", function() {
+         if (hasKey === true) {
+  $("<p>").text("You unlock the door using the key, and escape! When you look around, you find yourself in the middle of an even bigger  dungeon. End of game").appendTo("body");
+        $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+         } else {
+  $("<p>").text("You turn the doorknob, but the door is locked! A key has just spawned somewhere back in the dungeon. Find it to escape.").appendTo("body");
+       $("<button>").text("Go back").appendTo("body").on("click", middleRoom)
+         $("<p>").text("     *****************************************************************").appendTo("body")
+         }
+     })
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var monsterBattle = function() {
+            if (monsterDefeated === true){
+                doorRoom();
+            } else{
+  $("<p>").text("You enter and come face to face with a monster. The battle:").appendTo("body");
+    $("<p>").text("You: 100 HP    Enemy: 200 HP").appendTo("body");
+    $("<br>").appendTo("body")
+if(hasPotion === true && hasBow === true) {
+  $("<p>").text("You shoot the monster using 1 arrow.     You: 100 HP   Enemy: 100 HP   Inventory: Bow, 1 Arrow, Potion.").appendTo("body");
+$("<br>").appendTo("body")
+  $("<p>").text("The monster attacks using it's claws.     You: 0 HP   Enemy: 100 HP.      Inventory: Bow, 1 Arrow, Potion.").appendTo("body");
+    $("<br>").appendTo("body")
+  $("<p>").text("You heal yourself using your potion.     You: 100 HP   Enemy: 100 HP.     Inventory: Bow, 1 Arrow.").appendTo("body");
+  $("<br>").appendTo("body")
+    $("<p>").text("You shoot the monster using 1 arrow.     You: 100 HP   Enemy: 0 HP.      Monster dies.     Inventory: Bow").appendTo("body");
+    monsterDefeated = true;
+       $("<p>").text("     *****************************************************************").appendTo("body")
+doorRoom();
+}
+    else if (hasPotion === false && hasBow === true) {
+  $("<p>").text("You shoot the monster using 1 arrow.     You: 100 HP   Enemy: 100 HP   Inventory: Bow, 1 Arrow.").appendTo("body");
+  $("<br>").appendTo("body")
+  $("<p>").text("The monster attacks using it's claws.     You: 0 HP   Enemy: 100 HP.      Inventory: Bow, 1 Arrow.    .").appendTo("body");
+ deathMessage();
+        }
+         else if (hasPotion === true && hasBow === false) {
+              $("<p>").text("The monster attacks using it's claws.     You: 0 HP   Enemy: 200 HP.      Inventory: Potion.").appendTo("body");
+                $("<br>").appendTo("body")
+  $("<p>").text("You heal yourself using your potion.     You: 100 HP   Enemy: 200 HP.     Inventory: ").appendTo("body");
+                  $("<br>").appendTo("body")
+    $("<p>").text("The monster attacks using it's claws.     You: 0 HP   Enemy: 200 HP.      Inventory:      ").appendTo("body");
+deathMessage();
+        }
+            else if(hasPotion === false && hasBow === false) {
+                  $("<p>").text("The monster attacks using it's claws.     You: 0 HP   Enemy: 100 HP.      Inventory:     ").appendTo("body");
+deathMessage();
+            }
+   $("<p>").text("     *****************************************************************").appendTo("body")
+            }
+        }
+        var monsterPrompt = function() {
+  $("<p>").text("You are entering the monster battle. Do you wish to continue?").appendTo("body");
+ $("<button>").text("Yes").appendTo("body").on("click", monsterBattle)
+ $("<span>").text("      ").appendTo("body");
+ $("<button>").text("No").appendTo("body").on("click", middleRoom)
+   $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var bottomLeftRoom = function() {
+  $("<p>").text("You are in the bottom left room of the dungeon.").appendTo("body");
+  if (monsterDefeated === true) {
+    $("<p>").text("You see a key behind a stone block. ").appendTo("body");
+  }
+    $("<p>").text("Do you go up or right?").appendTo("body");
+    if (monsterDefeated === true) {
+    $("<button>").text("Pick item").appendTo("body").on("click", function() {
+        hasKey = true;
+        $("<p>").text("Key added to inventory").appendTo("body");
+            $("<p>").text("     *****************************************************************").appendTo("body")
+      })
+  }
+  $("<br>").appendTo("body")
+    $("<br>").appendTo("body")
+  $("<span>").text("      ").appendTo("body");
+$("<button>").text("Up").appendTo("body").on("click", leftRoom);
+$("<br>").appendTo("body")
+  $("<br>").appendTo("body")
+    $("<span>").text("              ").appendTo("body");
+      $("<button>").text("Right").appendTo("body").on("click", bottomRoom);
+      $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var bottomRoom = function() {
+  $("<p>").text("You are in the bottom right room of the dungeon. Do you go up, or left?").appendTo("body")
+  if(hasBow === false){ $("<p>").text("You also see a bow and two arrows hanging on the wall. Would you like to pick up the bow and arrows?").appendTo("body");
+        $("<button>").text("Pick Item").appendTo("body").on("click", function() {
+          hasBow = true;
+          $("<p>").text("Bow and arrows added to inventory").appendTo("body");
+            $("<p>").text("     *****************************************************************").appendTo("body")
+      })
+  }
+        $("<br>").appendTo("body");
+        $("<br>").appendTo("body");
+  $("<span>").text("      ").appendTo("body");
+$("<button>").text("Up").appendTo("body").on("click", middleRoom);
+ $("<br>").appendTo("body")
+  $("<br>").appendTo("body")
+  $("<button>").text("Left").appendTo("body").on("click", bottomLeftRoom);
+    $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var topLeftRoom = function() {
+              $("<p>").text("You are in the top left room of the dungeon.").appendTo("body") 
+              if(hasPotion === false){$("<p>").text("You look around and also see a potion. Would you like to pick up the potion?").appendTo("body");
+  $("<br>").appendTo("body")
+      $("<button>").text("Pick Item").appendTo("body").on("click", function() {
+          hasPotion = true;
+          $("<p>").text("Potion added to inventory").appendTo("body");
+            $("<p>").text("     *****************************************************************").appendTo("body")
+      })}
+  $("<br>").appendTo("body")
+  $("<br>").appendTo("body")
+    $("<span>").text("              ").appendTo("body");
+    $("<button>").text("Right").appendTo("body").on("click", topRoom);
+      $("<br>").appendTo("body");  
+  $("<br>").appendTo("body");
+  $("<span>").text("     ").appendTo("body");
+  $("<button>").text("Down").on("click", leftRoom).appendTo("body");
+   $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var leftRoom = function() {
+            $("<p>").text("You are in the middle left room of the dungeon. Do you go up, down or right?").appendTo("body");
+            $("<span>").text("      ").appendTo("body");
+            $("<button>").text("Up").on("click", topLeftRoom).appendTo("body");
+              $("<br>").appendTo("body");
+  $("<br>").appendTo("body");
+  $("<span>").text("              ").appendTo("body");
+  $("<button>").text("Right").appendTo("body").on("click", middleRoom);
+   $("<br>").appendTo("body");  
+  $("<br>").appendTo("body");
+   $("<span>").text("     ").appendTo("body");
+    $("<button>").text("Down").on("click", bottomLeftRoom).appendTo("body");
+  $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var middleRoom = function() {
+  $("<p>").text("You are in the middle room of the dungeon. Do you go up, down, left, or right?").appendTo("body");
+$("<span>").text("      ").appendTo("body");
+$("<button>").text("Up").attr("id", "upFromMiddle").appendTo("body").on("click", topRoom);
+  $("<br>").appendTo("body")
+  $("<br>").appendTo("body")
+  $("<button>").text("Left").appendTo("body").on("click", leftRoom);
+  $("<span>").text("       ").appendTo("body");
+  $("<button>").text("Right").attr("id", "#rightFromMiddle").appendTo("body").on("click", function() {
+     if(monsterDefeated === false) {
+         monsterPrompt()
+     } else {
+         doorRoom()
+     }
+      });
+  $("<br>").appendTo("body");  
+  $("<br>").appendTo("body");
+  $("<span>").text("     ").appendTo("body");
+  $("<button>").addClass("downFromMiddle").text("Down").appendTo("body").on("click", bottomRoom);
+  $("<br>");
+  $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+        var topRoom = function() {
+            $("<p>").text("You are in the top right room of the dungeon. Do you go down or left?").appendTo("body");
+            $("<br>").appendTo("body");
+            $("<button>").text("Left").on("click", topLeftRoom).appendTo("body"); $("<span>").text("      ").appendTo("body");
+            $("<span>").text("      ").appendTo("body");
+            $("<br>").appendTo("body"); $("<br>").appendTo("body"); $("<span>").text("     ").appendTo("body");
+            $("<button>").text("Down").on("click", middleRoom).appendTo("body")
+              $("<p>").text("     *****************************************************************").appendTo("body")
+        }
+
+            var startButton = $("#start-button").width(32).height(18).text("Start").on("click", middleRoom);
+            
+        </script>
+    </body>
+</html>
+
