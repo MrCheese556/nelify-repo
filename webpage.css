@@ -16,11 +16,11 @@ body{
 .seethrough1::before{
 	content: '';
 	position: absolute;
-	width: 150px;
-	height: 150px;
-	top: 450px;
-	left: 30px;
-	border-radius: 8px;
+	width: 10.1%;
+	height: 19.8%;
+	top: 68.6% ;
+	left: 2.26%;
+	border-radius: 5.3%;
 	background: rgba(255, 255, 255, 0.05);
 	backdrop-filter: blur(10px);
 	animation: animate 2s ease-in-out infinite;
@@ -32,11 +32,11 @@ body{
 .seethrough1::after{
 	content: '';
 	position: absolute;
-	width: 100px;
-	height: 100px;
-	top: 480px;
-	left: 530px;
-	border-radius: 8px;
+	width: 8%;
+	height: 15.46%;
+	top: 74.1%;
+	left: 48.8%;
+	border-radius: 8%;
 	background: rgba(255, 255, 255, 0.05);
 	backdrop-filter: blur(10px);
 	animation: animate 2s ease-in-out infinite;
@@ -47,11 +47,11 @@ body{
 .seethrough2::before{
 	content: '';
 	position: absolute;
-	width: 120px;
-	height: 120px;
-	top: 82px;
-	left: 720px;
-	border-radius: 8px;
+	width: 11%;
+	height: 22.5%;
+	top: 12.6%;
+	left: 54.4%;
+	border-radius: 6.6%;
 	background: rgba(255, 255, 255, 0.05);
 	backdrop-filter: blur(10px);
 	animation: animate 2s ease-in-out infinite;
@@ -215,17 +215,21 @@ body{
 
 }
 .container{
+	top: 4%;
+	left: 6.24%;
+	width: 86.5%;
+	height: 74.2%;
 	position: absolute;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	padding: 40px 0;
+	padding: 6.1% 0;
 }
 .container .box {
 	position: relative;
-	width: 320px;
-	height: 400px;
+	width: 27.92%;
+	height: 128.62%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -320,8 +324,8 @@ body{
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	width: 100%;
-	height: 100%;
+	width: 100px;
+	height: 100px;
 	border-radius: 8px;
 	background: rgba(255, 255, 255, 0.1);
 	backdrop-filter: blur(10px);
@@ -348,8 +352,8 @@ body{
 }
 .container .box .content {
 	z-index: 1;
-	left: 0;
-	padding: 20px 40px;
+	left: 0%;
+	padding: 6.27% 10%;
 	background: rgba(255, 255, 255, 0.1);
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
