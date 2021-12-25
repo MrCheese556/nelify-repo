@@ -1,0 +1,291 @@
+body {
+	padding: 0;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: url("./bg.jpg");
+	height: 100vh;
+}
+.roadWrapper {
+	position: relative;
+	width: 1300px;
+	height: 240px;
+	background: #525252;
+	transform-origin: bottom;
+	transform-style: preserve-3d;
+	transform: perspective(500px) rotateX(50deg);
+	border-radius: 20px;
+}
+img {
+	width: 75px;
+	height: 40px;
+}
+h1 {
+	top: 10%;
+	left: 45%;
+	position: absolute;
+	color: whitesmoke;
+	font-family: sans-serif;
+	text-shadow: 
+	0.05em 0 0 rgba(255,0,0,0.75),
+	-0.015em -0.05em 0 rgba(0,255,0,0.75),
+	0.15em 0.05em 0 rgba(0,0,255,0.75);
+}
+.slider {
+	top: 10%;
+	left: 10%;
+	position: absolute;
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 500px; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #04AA6D; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+#player, .red-cars {
+	transform: perspective(500px) rotateY(-183deg);
+}
+.roadWrapper::before {
+	content: '';
+	position: absolute;
+	top: 33%;
+	left: 0;
+	width: 100%;
+	height: 10px;
+	background: linear-gradient(90deg, #fff, 0% ,#fff, 70%, #525252, 100%, #525252);
+	background-size: 120px;
+	animation: move 0.6s linear infinite;
+}
+.roadWrapper::after {
+	content: '';
+	position: absolute;
+	top: 66%;
+	left: 0;
+	width: 100%;
+	height: 10px;
+	background: linear-gradient(90deg, #fff, 0% ,#fff, 70%, #525252, 100%, #525252);
+	background-size: 120px;
+	animation: move 0.6s linear infinite;
+}
+@keyframes move {
+	0%{
+		background-position: 0px;
+	}
+	100%{
+		background-position: -120px;
+	}
+}
+#box {
+	position: absolute;
+	width: 100%;
+	background: #333;
+	transform: perspective(500px) rotateX(-25deg);
+	bottom: -30px;
+	transform-origin: top;
+	height: 30px;
+	border-radius: 20px;
+}
+.relow {
+	position: relative;
+	height: 240px;
+}
+.carWrapper{
+	position: absolute;
+	top: 100px;
+	left: 150px;
+}
+.left_pressed {
+	top: 100px;
+	left: 150px;
+}
+.middle {
+	top: 150px;
+	left: 150px;
+}
+.right_pressed {
+	top: unset;
+	bottom: 1px;
+
+}
+.red-cars {
+
+}
+.low-speed::before {
+	animation: move linear 0.4s infinite;
+}
+.low-speed::after {
+	animation: move linear 0.4s infinite;
+}
+.high-speed::before {
+	animation: move linear 0.18s infinite;
+}
+.high-speed::after {
+	animation: move linear 0.18s infinite;
+}
+.high-speed ~.carWrapper {
+	/*animation: moveforwards 3s linear infinite;*/
+
+}
+/*.blue-cars {
+	animation: moveforwards 5s linear;
+}*/
+
+@keyframes moveforwards {
+	0% {
+		transform: translateX(-0px);
+	}
+	10% {
+		transform: translateX(-100px);
+	}
+	20% {
+		transform: translateX(-200px);
+	}
+	30% {
+		transform: translateX(-300px);
+	}
+	40% {
+		transform: translateX(-400px);
+	}
+	50% {
+		transform: translateX(-500px);
+	}
+	60% {
+		transform: translateX(-600px);
+	}
+	70% {
+		transform: translateX(-700px);
+	}
+	80% {
+		transform: translateX(-800px);
+	}
+	90% {
+		transform: translateX(-900px);
+	}
+	100% {
+		transform: translateX(-1000px);
+	}
+
+}
+@keyframes slide1 {
+	0% {
+		transform: translate(-0px,-0px);
+	}
+	10% {
+		transform: translateX(100px,-0px);
+	}
+	20% {
+		transform: translate(-200px, -0px);
+	}
+	30% {
+		transform: translate(-300px, 10px);
+	}
+	40% {
+		transform: translate(-400px, 20px);
+	}
+	50% {
+		transform: translate(-500px, 30px);
+	}
+	60% {
+		transform: translate(-600px, 40px);
+	}
+	70% {
+		transform: translate(-700px, 50px);
+	}
+	80% {
+		transform: translate(-800px, 50px);
+	}
+	90% {
+		transform: translate(-900px, 50px);
+	}
+	100% {
+		transform: translateX(-1000px, 50px);
+	}
+
+}
+@keyframes slide2 {
+	0% {
+		transform: translate(-0px,-0px);
+	}
+	10% {
+		transform: translateX(100px,-0px);
+	}
+	20% {
+		transform: translate(-200px, -0px);
+	}
+	30% {
+		transform: translate(-300px, -10px);
+	}
+	40% {
+		transform: translate(-400px, -20px);
+	}
+	50% {
+		transform: translate(-500px, -30px);
+	}
+	60% {
+		transform: translate(-600px,  -40px);
+	}
+	70% {
+		transform: translate(-700px, -50px);
+	}
+	80% {
+		transform: translate(-800px, -50px);
+	}
+	90% {
+		transform: translate(-900px, -50px);
+	}
+	100% {
+		transform: translateX(-1000px, -50px);
+	}
+
+}
+@keyframes trick {
+	0% {
+		transform: translateX(-0px);
+	}
+	10% {
+		transform: translateX(-200px);
+	}
+	20% {
+		transform: translateX(-400px);
+	}
+	30% {
+		transform: translateX(-600px);
+	}
+	40% {
+		transform: translateX(-800px) perspective(500px) rotateY(-90deg);
+	}
+	50% {
+		transform: translateX(-1000px) perspective(500px) rotateY(-183deg);
+	}
+	60% {
+		transform: translateX(-1000px) perspective(500px) rotateY(-183deg);
+	}
+	70% {
+		transform: translateX(-700px) perspective(500px) rotateY(-183deg);
+	}
+	80% {
+		transform: translateX(-500px) perspective(500px) rotateY(-183deg);
+	}
+	90% {
+		transform: translateX(-200px) perspective(500px) rotateY(-183deg);
+	}
+	100% {
+		transform: translateX(-0px) perspective(500px) rotateY(-183deg);
+	}
+}
