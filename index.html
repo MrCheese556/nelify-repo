@@ -2,11 +2,17 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="./webpage.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
 	<link REL="SHORTCUT ICON" HREF="./pic.png">
 	<meta charset="utf-8">
 	<title>webpage</title>
 </head>
 <body>
+	
+<div id="blob"></div>
+<div id="blur"></div>
 <!-- 	<p class = 'glitch'>■</p> -->
 <!-- 	<p class = 'glitch'>■</p>
 	<p class = 'glitch'>●</p> -->
@@ -25,7 +31,7 @@
 			<div onclick="location.href='https://mrcheese556.github.io/unity-game/';" style="cursor: pointer;" class = "box" id= "box-1">
 				<span></span>
 				<div class = "content">
-					<h2>Pineapple</h2>
+					<h2 data-value="pineapple">Pineapple</h2>
 					<p>Shoot the enemies to win. More levels coming soon</p>
 				</div>
 			</div>
@@ -36,21 +42,28 @@
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
 					</div>
 			</div>
-			<div onclick = "location.href = './amal.html';" style="cursor: pointer;" class = "box" id = "box-3">
+			<div onclick = "location.href = './selfdriving/selfdriving.html';" style="cursor: pointer;" class = "box" id = "box-3">
 				<span></span>
 				<div class = "content">
-					<h2>Multiplayer Pineapple</h2>
-					<p>Quick multiplayer FPS, in 3D</p>
+					<h2 data-value="self driving car model">Self Driving car</h2>
+					<p>Try to train a car to drive using neural networks and an evolution algorithm</p>
 				</div>
 			</div>
 		</div>
 	<div class = "btn-container">
 		<div id = "good" class="btn"><a href="https://mrcheese556.github.io/unity-game/">Go Here</a></div>
 		<div class="btn"><a id= "gone"href="dungeon.html">Go Here</a></div>
-		<div id="good" class="btn"><a href = "./amal">Go Here</a></div>
+		<div id="good" class="btn"><a href = "./selfdriving/selfdriving.html">Go Here</a></div>
 	</div>
 <!-- 	<p class="ad"><a href="https://www.youtube.com/channel/UCd8Kn5oQMat5wsvimR9JIAA/videos"><img src="./ad.jpg">
 	<h1 class="ad-text">Sponsored Ad (Clickable)</h1></p> -->
-	<a class = "all-games" href = "allGames.html">All games (Click This)</a>
+	<p class = "all-games">
+		<a href="./allGames.html"> 
+		<span class = "magic" data-value = "snayhin">snayhin</span>
+		.netlify.app
+		</a>
+	</p>
+	<script src = "./home.js">
+			</script>
 </body>
 </html>

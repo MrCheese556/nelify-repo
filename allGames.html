@@ -4,33 +4,30 @@
 	<meta charset="utf-8">
 	<title>All Games</title>
 	<link REL="SHORTCUT ICON" HREF="./pic.png">
-	<style type="text/css">
-		body {
-			background: #1d061a;
-		}
-		a {
-			color: whitesmoke;
-			text-decoration: underline;
-			font-size: 3em;
-			justify-content: center;
-			font-family: sans-serif;
-
-		}
-	</style>
+	<link rel = "stylesheet" href = "./allgames.css">
 </head>
 <body>
-	<a href = "./dungeon.html">Dungeon Game</a>
+	<div id="blob"></div>
+	<div id="blur"></div>
+	<p id="links">
+		<a href = "./dungeon.html" id = "magic" data-value = "dungeon game">Dungeon Game</a>
 	<br>
 	<br>
-	<a href = "./game.html">Spheres Game</a>
+	<a href = "./game.html" id = "magic" data-value = "spheres game">Spheres Game</a>
 	<br>
 	<br>
-	<a href = "./cargame.html">Car Game (Beta)</a>
+	<a href = "./cargame.html" id = "magic" data-value = "car game (beta)">Car Game (Beta)</a>
 	<br>
 	<br>
-	<a onclick = "location.href='https://mrcheese556.github.io/unity-game/';">PineappleShooter</a>
+	<a onclick = "location.href='https://mrcheese556.github.io/unity-game/';" data-value = "pinapple shooter">PineappleShooter</a>
 	<br>
 	<br>
-	<a href = "./amal.html">Multiplayer Pineapple</a>
+	<a href = "./amal.html" id = "magic" data-value = "multiplayer pineapple">Multiplayer Pineapple</a>
+	<br>
+	<br>
+	<a href = "./selfdriving/selfdriving.html" id = "magic" data-value = "self driving car model">Self driving car model</a>
+	</p>
+	
+	<script src = "./allgames.js"></script>
 </body>
 </html>

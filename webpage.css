@@ -3,15 +3,17 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: consolas;
+	
 }
 body{
 	display: flex;
 	align-items: center;
 	min-height: 100vh;
-	background: #1d061a;
+	background: #0c020b;
 	position: relative;
 	flex-flow: column;
 	justify-content: center;
+	overflow: hidden;
 }
 .ad {
 	position: absolute;
@@ -20,13 +22,73 @@ body{
 	height: 300.25px;
 	top: 5%;
 }
+@keyframes rotate {
+	from {
+		rotate: 0deg;
+	}
+
+	50% {
+		scale: 1 2;
+	}
+	to {
+		rotate: 360deg;
+	}
+}
+#blob {
+	animation: rotate 10s infinite;
+	background: linear-gradient(
+		to right,
+		#00ff4c, 
+		#0400ff
+	);
+	height: 200px;
+	aspect-ratio: 1;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	translate: -50% -50%;
+	border-radius: 50%;
+	opacity: 75%;
+}
+#blur {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	backdrop-filter: blur(200px);
+}
 .all-games {
 	position: absolute;
 	top: 10%;
-	color: whitesmoke;
+	color: #FFFFFF;
 	font-family: sans-serif;
 	font-size: 3em;
-	text-decoration: underline;
+	text-decoration: none;
+}
+@keyframes background-pan{
+	from {
+		background-position: 0% center;
+	}
+	to {
+		background-position: -200% center;
+	}
+}
+.magic {
+	animation: background-pan 3s linear infinite;
+	font-family: 'Roboto Mono', monospace;
+	background: linear-gradient(
+		to right,
+		#00d0ff,
+		#03a9f4,
+		#4dff03,
+		#00d0ff
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	white-space: nowrap;
+	background-size: 200%;
+}
+a {
+	text-decoration: none;
 }
 
 .ad img {
@@ -160,7 +222,7 @@ body{
 	box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 	z-index: 50;
 	}
-}
+
 .seethrough2::after{
 	content: '';
 	position: absolute;
@@ -480,7 +542,7 @@ body{
 .container .box .content p{
 	font-size: 1.1em;
 	margin-bottom: 10px;
-	line-spacing: 1.4em;
+	line-spacing: 1.4em; 
 }
 #box-2 .content{
 	display: none;
