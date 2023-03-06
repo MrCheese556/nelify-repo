@@ -10,10 +10,18 @@ const carCtx = carCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
 
 const road = new Road(carCanvas.width/2, carCanvas.width * 0.9)
-const you = new Car(road.getLaneCenter(1), 100, 30, 50, "KEYS");
+var you = new Car(road.getLaneCenter(1), 100, 30, 50, "KEYS");
 
-const N=500;
-const cars = generateCars(N);
+var N=150;
+if(localStorage.getItem("numCars"))
+{
+    N = JSON.parse(localStorage.getItem("numCars"));
+    document.getElementById("carnum").value = JSON.parse(localStorage.getItem("numCars"));
+}
+
+var cars = [];
+
+cars = generateCars(N);
 let bestCar = cars[0];
 if(localStorage.getItem("bestBrain")){
     for(let i = 0; i < cars.length; i++)
@@ -75,6 +83,9 @@ function discard()
     localStorage.removeItem("bestBrain");
     }
 }
+function spawnCar(){
+    you = new Car(bestCar.x, bestCar.y, 30, 50, "KEYS");
+}
 
     var interval = 3000;
     var lastTime = 0;
@@ -99,8 +110,8 @@ function animate(time){
         ...cars.map(c=>c.y)
     ));
     
- 
-
+    localStorage.setItem("numCars", JSON.stringify(document.getElementById("carnum").value));
+    document.getElementById("vals").innerHTML = "Number of cars next time: " + document.getElementById("carnum").value;
     carCanvas.height = window.innerHeight;
     networkCanvas.height = window.innerHeight;
 

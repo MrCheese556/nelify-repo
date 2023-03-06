@@ -8,12 +8,37 @@
     <link rel = "stylesheet" href = "./style.css">
 </head>
 <body>
+    
+    <div class="slidecontainer">
+        <div id = "verticalButtons">
+            <input id = "carnum" type="range" min="1" max="700" value="250">
+            <h2 id  = "vals">Number of cars: 250</h2>
+        </div>
+        
+    </div>
     <canvas id = "carCanvas"></canvas>
     <div id = "verticalButtons">
+        <button onclick="location.reload()">↺</button>
         <button onclick="save()">💾</button>
         <button onclick="discard()">⌫</button>
+        <button onclick="spawnCar()">🚗</button>
+        
     </div>
     <canvas id = "networkCanvas"></canvas>
+    <div id = "text">
+        <h1>Explanation:</h1>
+        <p>
+            This is a demonstration of a neural network. You can train your own car to drive, and then try to race against it.
+             <span class = "magic">(You will probably lose.)</span> <br><br>
+             To start, just hit the refresh button in the center.<br><br>
+              Each time you do this, a new generation of cars are spawned, and the amount is specified on the left.<br><br>
+               Only choose a high amount <span class = "magic">(Above 500)</span> if your computer can handle it. When you are running a simulation and see a car pull ahead <span class = "magic">(Wait a few seconds first)</span>, click the save button. <br><br>
+               The algorithm works similar to evolution, where each new generation of cars has the same brain as the saved one <span class = "magic">(The best model)</span>, but with a little mutation. <br><br>
+               The more times you save, reload, and mutate the cars, the better the entire species will become.<br><br>
+               If you ever want to race with your cars, click the red car button, which will spawn a drivable <span class = "magic">(Arrow keys)</span> car.<br><br>
+               Good luck
+        </p>
+    </div>
     <script src = "./utils.js"></script>
     <script src = "./visualizer.js"></script>
     <script src = "./network.js"></script>
