@@ -38,8 +38,8 @@ body{
 	animation: rotate 10s infinite;
 	background: linear-gradient(
 		to right,
-		#00ff4c, 
-		#0400ff
+		#9fbe14, 
+		#0dc751
 	);
 	height: 200px;
 	aspect-ratio: 1;
@@ -49,6 +49,7 @@ body{
 	translate: -50% -50%;
 	border-radius: 50%;
 	opacity: 75%;
+	z-index: 0;
 }
 #blur {
 	height: 100%;
